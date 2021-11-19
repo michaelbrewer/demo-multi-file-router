@@ -1,6 +1,6 @@
 import json
 
-from users import lambda_function  # follows namespace package from root
+from src.users import lambda_function
 
 
 def test_lambda_handler(apigw_event, lambda_context):

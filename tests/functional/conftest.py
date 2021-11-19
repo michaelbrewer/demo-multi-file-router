@@ -18,18 +18,10 @@ def lambda_context():
 @pytest.fixture
 def apigw_event():
     return {
-        "version": "2.0",
-        "routeKey": "ANY /hello",
-        "rawPath": "/hello",
+        "version": "1.0",
+        "httpMethod": "GET",
+        "path": "/hello",
         "headers": {
-            "content-type": "application/json",
             "x-amzn-trace-id": "Root=1-60a0949a-4386c766717308f80e2072ba",
-        },
-        "requestContext": {
-            "http": {
-                "method": "GET",
-                "path": "/hello",
-            },
-            "stage": "$default",
         },
     }

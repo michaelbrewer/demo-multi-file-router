@@ -6,11 +6,11 @@ from aws_lambda_powertools.event_handler.api_gateway import ProxyEventType
 from aws_lambda_powertools.logging.correlation_paths import APPLICATION_LOAD_BALANCER
 from aws_lambda_powertools.utilities.typing import LambdaContext
 
-from routers import health, users
+from .routers import health, users
 
 tracer = Tracer()
 logger = Logger()
-app = ApiGatewayResolver(proxy_type=ProxyEventType.APIGatewayProxyEventV2)
+app = ApiGatewayResolver(proxy_type=ProxyEventType.APIGatewayProxyEvent)
 
 app.include_router(health.router)
 app.include_router(users.router)

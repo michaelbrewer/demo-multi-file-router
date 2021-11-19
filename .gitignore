@@ -2,3 +2,4 @@
 .pytest_cache/
 .idea/
 samconfig.toml
+__pycache__
