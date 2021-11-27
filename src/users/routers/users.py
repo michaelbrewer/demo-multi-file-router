@@ -14,8 +14,8 @@ def users() -> List:
 
 
 @router.get("/users/<name>")
-def user_by_name(user: str):
-    return {"name": user}
+def user_by_name(name: str):
+    return {"name": name, "descrption": "Updated"}
 
 
 @router.get("/hello")

@@ -7,6 +7,8 @@ Globals:
         MemorySize: 512
         Runtime: python3.9
         Tracing: Active
+        Architectures:
+            - arm64
         Environment:
             Variables:
                 LOG_LEVEL: INFO
