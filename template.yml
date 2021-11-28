@@ -19,7 +19,7 @@ Resources:
     UsersService:
         Type: AWS::Serverless::Function
         Properties:
-            Handler: users.lambda_function.lambda_handler
+            Handler: users.main.lambda_handler
             CodeUri: src
             Layers:
                 # Latest version: https://awslabs.github.io/aws-lambda-powertools-python/latest/#lambda-layer

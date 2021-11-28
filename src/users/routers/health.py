@@ -9,5 +9,5 @@ logger = Logger(child=True)
 
 @router.get("/status")
 def health() -> Dict:
-    logger.debug("Health check called")
+    logger.debug("Health check called!")
     return {"status": "OK"}
