@@ -16,6 +16,8 @@ Globals:
                 POWERTOOLS_METRICS_NAMESPACE: MyServerlessApplication
                 POWERTOOLS_SERVICE_NAME: users
 Resources:
+    HttpApi:
+        Type: AWS::Serverless::HttpApi
     UsersService:
         Type: AWS::Serverless::Function
         Properties:
@@ -26,30 +28,33 @@ Resources:
                 - !Sub arn:aws:lambda:${AWS::Region}:017000801446:layer:AWSLambdaPowertoolsPython:4
             Events:
                 ByUser:
-                    Type: Api
+                    Type: HttpApi
                     Properties:
+                        ApiId: !Ref HttpApi
                         Path: /users/{name}
                         Method: GET
                 AllUsers:
-                    Type: Api
+                    Type: HttpApi
                     Properties:
+                        ApiId: !Ref HttpApi
                         Path: /users
                         Method: GET
                 HealthCheck:
-                    Type: Api
+                    Type: HttpApi
                     Properties:
+                        ApiId: !Ref HttpApi
                         Path: /status
                         Method: GET
 Outputs:
     UsersApiEndpoint:
-        Description: "API Gateway endpoint URL for Prod environment for Users Function"
-        Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+        Description: "API Gateway endpoint URL for $default environment for Users Function"
+        Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
     AllUsersURL:
         Description: "URL to fetch all registered users"
-        Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/users"
+        Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/users"
     ByUserURL:
         Description: "URL to retrieve details by user"
-        Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/users/test"
+        Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/users/test"
     UsersServiceFunctionArn:
         Description: "Users Lambda Function ARN"
         Value: !GetAtt UsersService.Arn
