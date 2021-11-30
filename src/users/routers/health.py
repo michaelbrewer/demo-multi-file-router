@@ -8,6 +8,7 @@ logger = Logger(child=True)
 
 
 @router.get("/status")
+@tracer.capture_method
 def health() -> Dict:
     logger.debug("Health check called!")
     return {"status": "OK"}

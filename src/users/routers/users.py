@@ -10,6 +10,7 @@ tracer = Tracer()
 
 
 @router.get("/users")
+@tracer.capture_method
 def users() -> List:
     logger.debug("Users called")
     return [{"name": "Foo"}]
@@ -22,6 +23,7 @@ def user_by_name(name: str):
 
 
 @router.get("/hello")
+@tracer.capture_method
 def hello() -> Dict:
     # For the unit test
     return {"message": "hello universe"}
