@@ -19,7 +19,7 @@ def users() -> List:
 @router.get("/users/<name>")
 @tracer.capture_method
 def user_by_name(name: str):
-    return {"name": name, "version": 6}
+    return {"name": name, "version": 7}
 
 
 @router.get("/hello")
